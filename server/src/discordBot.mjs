@@ -53,8 +53,8 @@ async function createSelfVerificationLink(sessionId, discordUser, generateQr = t
   const userId = `0x${hexUserId.slice(0, 40)}`;
 
   // Build callback URL for mobile users
-  const baseUrl = SELF_ENDPOINT.replace("/api/verify", "");
-  const callbackUrl = isMobile ? `${baseUrl}/callback?session=${sessionId}` : "";
+  // Use Discord deep link to return user directly to Discord app
+  const callbackUrl = isMobile ? `discord://` : "";
 
   logEvent("verification.callback_url", "Building Self verification with callback", {
     sessionId,

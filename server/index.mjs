@@ -132,7 +132,7 @@ app.get("/callback", (req, res) => {
           <strong>Status:</strong> <span id="statusText">Checking...</span>
         </div>
         <p style="font-size: 14px; color: #999; margin-top: 30px;">
-          You can close this page and return to Discord once verification completes.
+          You can close this page and <a href="discord://" style="color: #667eea; text-decoration: none; font-weight: bold;">return to Discord</a> to check your new role.
         </p>
       </div>
 
@@ -151,9 +151,15 @@ app.get("/callback", (req, res) => {
               document.getElementById('spinner').style.display = 'none';
               document.getElementById('successIcon').style.display = 'block';
               document.getElementById('title').textContent = 'Verification Complete!';
-              document.getElementById('message').textContent = 'Your identity has been verified. You can now return to Discord to access restricted channels.';
+              document.getElementById('message').innerHTML = 'Your identity has been verified! <a href="discord://" style="color: #667eea; text-decoration: underline; font-weight: bold;">Tap here to return to Discord</a> and access restricted channels.';
               document.getElementById('statusText').textContent = 'Verified ✓';
               document.getElementById('status').classList.add('success');
+
+              // Auto-redirect to Discord after 2 seconds
+              setTimeout(() => {
+                window.location.href = 'discord://';
+              }, 2000);
+
               return;
             }
 
