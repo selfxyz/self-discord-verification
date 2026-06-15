@@ -311,52 +311,20 @@ Use your production HTTPS URL in `SELF_ENDPOINT`.
 
 ### Testing the Integration
 
-Use this smoke test after updating `@selfxyz/core`:
+To verify everything works:
 
-1. Start the server and confirm the health endpoint responds:
+```bash
+# Check server is running
+curl http://localhost:3001
+# Should return: {"status":"ok","message":"Self Express Backend + Discord verifier bot (offchain)"}
 
-   ```bash
-   cd server
-   npm start
-   curl http://localhost:8080
-   ```
+# Check Discord bot is online
+# Look in Discord - bot should show as online
 
-   Expected result:
-   - `npm start` logs the configured `SELF_ENDPOINT`
-   - `curl` returns `{"status":"ok","message":"Self Express Backend + Discord verifier bot (offchain)",...}`
-
-2. Open a second terminal and watch the verifier logs:
-
-   ```bash
-   tail -f server/logs/discord-verifier.log
-   ```
-
-   Expected result:
-   - The log includes `discord.ready`
-   - The log later shows `verification.started` when `/verify` is used
-
-3. In Discord, use an account that does not already have the verified role and run `/verify`.
-
-   Expected result:
-   - The bot replies with the platform selector
-   - The user receives a DM with either a QR code (desktop flow) or short link (mobile flow)
-
-4. Complete the verification in the Self app.
-
-   Expected result:
-   - The backend receives `POST /api/verify`
-   - The log shows `verification.succeeded`
-   - The Discord member receives the configured verified role
-   - The user receives the success DM
-
-5. Repeat `/verify` after the role has been assigned.
-
-   Expected result:
-   - The bot responds that the user is already verified
-
-6. Repeat the flow once for each entry path:
-   - Desktop: choose **🖥️ I'm on Desktop** and scan the QR code from the DM
-   - Mobile: choose **📱 I'm on Mobile** and open the shortened verification link from the DM
+# Check logs
+tail -f server/logs/discord-verifier.log
+# Should see: {"event":"discord.ready",...}
+```
 
 ## API Reference
 
