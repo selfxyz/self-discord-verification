@@ -247,16 +247,16 @@ SELF_LOGO_URL=https://i.postimg.cc/mrmVf9hm/self.png
 
 #### Environment Variable Reference
 
-| Variable                   | Required | Description                                      |
-| -------------------------- | -------- | ------------------------------------------------ |
-| `PORT`                     | No       | Express server port (default: 8080)              |
-| `SELF_ENDPOINT`            | **Yes**  | Public HTTPS URL + `/api/verify` (no localhost!) |
-| `DISCORD_BOT_TOKEN`        | **Yes**  | Bot token from Developer Portal                  |
-| `DISCORD_CLIENT_ID`        | **Yes**  | Application ID from Developer Portal             |
-| `DISCORD_GUILD_ID`         | **Yes**  | Your Discord server ID                           |
-| `DISCORD_VERIFIED_ROLE_ID` | **Yes**  | Role to assign on verification                   |
-| `SELF_APP_NAME`            | No       | Name shown in Self app                           |
-| `SELF_LOGO_URL`            | No       | Logo shown in Self app                           |
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `PORT` | No | Express server port (default: 8080) |
+| `SELF_ENDPOINT` | **Yes** | Public HTTPS URL + `/api/verify` (no localhost!) |
+| `DISCORD_BOT_TOKEN` | **Yes** | Bot token from Developer Portal |
+| `DISCORD_CLIENT_ID` | **Yes** | Application ID from Developer Portal |
+| `DISCORD_GUILD_ID` | **Yes** | Your Discord server ID |
+| `DISCORD_VERIFIED_ROLE_ID` | **Yes** | Role to assign on verification |
+| `SELF_APP_NAME` | No | Name shown in Self app |
+| `SELF_LOGO_URL` | No | Logo shown in Self app |
 
 **Critical**: `SELF_ENDPOINT` must be:
 
@@ -435,15 +435,15 @@ All events are logged to `server/logs/discord-verifier.log` in JSON Lines format
 
 ### Key Events
 
-| Event                         | Description                  |
-| ----------------------------- | ---------------------------- |
-| `discord.ready`               | Bot connected and ready      |
-| `discord.commands_registered` | Slash commands registered    |
-| `verification.started`        | User initiated /verify       |
-| `verification.succeeded`      | Proof validated successfully |
-| `verification.failed`         | Proof validation failed      |
-| `verification.role_assigned`  | Role assigned to user        |
-| `qr.created`                  | QR code generated            |
+| Event | Description |
+|-------|-------------|
+| `discord.ready` | Bot connected and ready |
+| `discord.commands_registered` | Slash commands registered |
+| `verification.started` | User initiated /verify |
+| `verification.succeeded` | Proof validated successfully |
+| `verification.failed` | Proof validation failed |
+| `verification.role_assigned` | Role assigned to user |
+| `qr.created` | QR code generated |
 
 ### Viewing Logs
 
